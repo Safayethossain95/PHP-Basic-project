@@ -1,0 +1,81 @@
+ <div class="card-header bg-info text-center"><h3 style="color:black;">All Deactivated Portfolios</h3></div>
+         <div class="card-body">
+           <div class="container">
+            
+             <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    
+                    <th class="text-center">ID</th>
+                    <th class="text-center">Title</th>
+                    <th class="text-center">Summary</th>
+                    <th class="text-center">Icon</th>
+                    <th class="text-center">Status</th>
+                    
+                    <th class="text-center">Action</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php 
+                    foreach ($dservices as $key => $dservice) {
+                      ?>
+                      <tr>
+                    <td class="text-center"><?php echo ++$key; ?></td>
+                    <td class="text-center"><?php echo $dservice['title']; ?></td>
+                    <td class="text-center"><?php echo $dservice['summary']; ?></td>
+                    <td class="text-center"><?php echo $dservice['icon']; ?></td>
+                    
+
+                    <td class="text-center">
+                      <?php 
+                        if($dservice['status']==1){
+                          ?>
+                          <a href="services-status.php?id=<?php echo $dservice['id']; ?>" class="btn btn-outline-success">Activeted</a>
+
+
+                        <?php
+                        }
+                        else{
+                          ?>
+                          <a href="services-status.php?id=<?php echo $dservice['id']; ?>" class="btn btn-outline-danger">Deactiveted</a>
+                          <?php  
+                        }
+
+
+                      ?>  </td>
+                    
+                    <td class="text-center">
+                      
+                      <?php 
+                        if($dservice['status']==1){
+
+                          // $_SESSION['safa']= $assoc['id'];
+                          ?>
+                          <a href="edit_form.php?safa=<?php echo $dservice['id'];?>" class="btn btn-outline-info">Edit</a>
+                          
+                          <a href="user-delete.php?id=<?php echo $dservice['id']; ?>" class="btn btn-outline-danger">Delete</a>
+ 
+                           <?php
+                        }
+                       
+                        else{
+                          
+                            echo '<a href="" class="btn btn-outline-danger">Not Allowed</a>';
+                            
+                        }
+                       ?>
+
+                    </td>
+                  </tr>
+                  <?php
+
+                    }
+                   ?>
+                  
+                  
+                </tbody>
+              </table>
+              
+           </div>
+         </div>
